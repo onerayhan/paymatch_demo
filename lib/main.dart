@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
       return MaterialApp(
         routes: {
-          '/': (context) => Welcome(),
+          '/': (context) => PortfolioView(),
           '/login': (context) => Login(),
           '/signup': (context) => SignUp(),
         },
