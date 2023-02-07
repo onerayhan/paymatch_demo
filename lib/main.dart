@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paymatch_demo/routes/fundings.dart';
 import 'package:paymatch_demo/routes/welcome.dart';
 import 'package:paymatch_demo/routes/login.dart';
 import 'package:paymatch_demo/routes/signup.dart';
@@ -10,9 +11,10 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
       return MaterialApp(
         routes: {
-          '/': (context) => Welcome(),
+          '/': (context) => PortfolioView(),
           '/login': (context) => Login(),
           '/signup': (context) => SignUp(),
+          '/fundings': (context) => FundingsView(),
         },
       );
   }
