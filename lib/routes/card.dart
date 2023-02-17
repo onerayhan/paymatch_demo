@@ -44,49 +44,99 @@ class FundingsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return buildFundingsCard(context, funding);
+    double height = MediaQuery.of(context).size.height;
+    return buildFundingsCard(context, funding, height);
   }
 }
 
-Widget buildFundingsCard(BuildContext context, Funding funding) => Card(
-  margin: EdgeInsets.all(0.0),
-  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0)),
-  color: lightColorScheme.onPrimary,
-  child: Padding(
-    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-    child: Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              flex: 4,
-              child: Container(
-                height: 200,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  image: DecorationImage(
-                    image: funding.bgImg,
-                    fit: BoxFit.fill,
-                    opacity: 0.3,
-                    isAntiAlias: true,
-
+Widget buildFundingsCard(BuildContext context, Funding funding, double height) => Container(
+  height: height * 0.45,
+  child:   Card(
+    margin: EdgeInsets.all(8.0),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0)),
+    color: lightColorScheme.onPrimary,
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+      child: Column(
+        children: [
+          Expanded(
+            flex: 4,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      image: DecorationImage(
+                        image: funding.bgImg,
+                        fit: BoxFit.fill,
+                        opacity: 0.3,
+                        isAntiAlias: true,
+                      ),
+                    ),
+                    child: Text("A1 Capital",
+                    style: kPriceTextStyle,)),
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Row(
+              children: [
+                Expanded(
+                    child: Text("A1 Capital; Hisse Senedi ve VİOP işlemlerine aracılık, Yatırım Danışmanlığı, Portföy Yönetimi, Halka Arz, Borçlanma Aracı İhraçları, Şirket Değerlemesi, Şirket Satın Alma ve Birleşme, Proje Finansmanı, Sermaye Artırımı ve Çağrı İşlemlerine aracılık gibi sermaye piyasalarının tüm alanlarını kapsayan geniş yetkili aracı kurum olarak müşterilerine özel çözümler sunuyor."))
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: ClipOval(
+                    child: Image.network("https://play-lh.googleusercontent.com/8MCdyr0eVIcg8YVZsrVS_62JvDihfCB9qERUmr-G_GleJI-Fib6pLoFCuYsGNBtAk3c",
+                      width: 60.0,
+                      height: 60.0,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
-                child: Text("A1 Capital",
-                style: kPriceTextStyle,)),
+                const SizedBox(width: 16.0,),
+                Expanded(
+                  flex: 6,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(funding.symbol,
+                          style: kSymbolNameTextStyle),
+                      const SizedBox(height: 8.0,),
+                      Text((funding.fullName).length < 20 ? funding.fullName : "${funding.fullName.substring(0,20)}...",
+                        style: kSymbolTextStyle,),
+                    ],
+                  ),
+                ),
+              ],
             ),
-
-
-          ],
-        ),
-
-      ],
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              children: [
+                LinearProgressIndicator(
+                  value: 0.5,
+                  semanticsLabel: "Fonlanan Miktar",
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     ),
   ),
-
 );
 
 
