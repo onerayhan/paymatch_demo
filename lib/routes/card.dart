@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:paymatch_demo/model/fundings_model.dart';
+import 'package:paymatch_demo/routes/details.dart';
 
 import '../model/orders.dart';
 import '../utils/color.dart';
 import '../utils/styles.dart';
-
+/*
 class WaitingOrderCard extends StatelessWidget {
   TradeResult result;
   String listName;
@@ -16,6 +17,75 @@ class WaitingOrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     return buildWaitingOrderCard(context, result, listName , height,);
+  }
+}*/
+
+class WalletCardNonExpanded extends StatelessWidget {
+  TradeResult result;
+  String listName;
+
+  WalletCardNonExpanded({Key? key,required this.result, required this.listName}) : super(key: key);
+  //String listName;
+  @override
+  Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    return Card(
+      margin: EdgeInsets.all(0.0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0)),
+      color: lightColorScheme.onPrimary,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+              //StockHeader
+              Container(
+              //width: ,
+              padding: EdgeInsets.all(6.0),
+              decoration: BoxDecoration(
+                color: lightColorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(8),
+                //border: Border.all(width: 8),
+              ),
+              child: Expanded(
+                flex: 2,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: ClipOval(
+                        child: Image.network("https://play-lh.googleusercontent.com/8MCdyr0eVIcg8YVZsrVS_62JvDihfCB9qERUmr-G_GleJI-Fib6pLoFCuYsGNBtAk3c",
+                          width: 40.0,
+                          height: 60.0,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8.0,),
+                    Expanded(
+                      flex: 4,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(result.symbol,
+                              style: kSymbolNameTextStyle),
+                          const SizedBox(height: 8.0,),
+                          Text((result.fullName).length < 20 ? result.fullName : "${result.fullName.substring(0,20)}...",
+                            style: kSymbolTextStyle,),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -45,27 +115,34 @@ Widget buildFundingsCard(BuildContext context, Funding funding, double height, d
     child: Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
       child: Column(
+        //mainAxisAlignment: MainAxisAlignment.,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 3,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+            flex: 4,
+            child:
+            Row(
+              //mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.0),
-                      image: DecorationImage(
-                        image: funding.bgImg,
-                        fit: BoxFit.cover,
-                        opacity: 0.3,
-                        isAntiAlias: true,
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                      padding: EdgeInsets.fromLTRB(6.0, 30.0, 0, 0),
+                      width: width,
+                      height: height * 0.35,
+                      decoration: BoxDecoration(color: Colors.white,
+                        borderRadius: BorderRadius.circular(6.0),
+                        image: DecorationImage(
+                          image: AssetImage("assets/logo.png"),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                    child: Text("A1 Capital",
-                    style: kPriceTextStyle,)),
+                      child:
+                      Text("A1 Capital",
+                      style: kLabelLightTextStyle,)
+                  ),
+                ),
               ],
             ),
           ),
@@ -134,19 +211,21 @@ Widget buildFundingsCard(BuildContext context, Funding funding, double height, d
                       ),
                       Container(
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        padding: EdgeInsets.all(4.0),
+                        padding: EdgeInsets.all(2.0),
                         height: double.maxFinite,
                         width: width * funding.fundedPercentage,
                         decoration: BoxDecoration(
-                          color: lightColorScheme.onPrimaryContainer,
+                          color: lightColorScheme.inversePrimary,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        child: Center(
-                          child: Text( "${(funding.fundedPercentage) * 100}%",
-                          style: kLabelLightTextStyle,
-                          ),
+
+                      ),
+                      Center(
+                        child: Text( "${(funding.fundedPercentage) * 100}%",
+                          style: kLabelUnoTextStyle,
                         ),
                       ),
+
                     ],
                   ),
                 ),
@@ -171,7 +250,9 @@ Widget buildFundingsCard(BuildContext context, Funding funding, double height, d
                         side: BorderSide(
                           width: 1.0,
                           color: Colors.green),),
-                      onPressed: () {},
+                      onPressed: () {
+
+                      },
                       child: Text("Yatırım Yap",
                           style: kChangeGreenTextStyle,
                       ),
@@ -185,7 +266,9 @@ Widget buildFundingsCard(BuildContext context, Funding funding, double height, d
                       side: BorderSide(
                         width: 1.0,
                         color: lightColorScheme.onPrimaryContainer),),
-                    onPressed: () {},
+                    onPressed: () {
+                      _gotoDetailsView(context);
+                    },
                     child: Text("İncele",
                       style: kButtonTextStyle,
                     ),
@@ -215,9 +298,9 @@ class FundingsCard extends StatelessWidget {
 }
 
 
-
+/*
 Widget buildWaitingOrderCard(BuildContext context,TradeResult result, String listName , double height) => Container(
-  height: height * 0.18,
+  height: height * 0.20,
   child:   Card(
     margin: EdgeInsets.all(0.0),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0)),
@@ -337,7 +420,7 @@ Widget buildWaitingOrderCard(BuildContext context,TradeResult result, String lis
   ),
 );
 
-
+*/
 
 Widget buildWalletCard(BuildContext context,TradeResult result, String listName) => Card(
   margin: EdgeInsets.all(0.0),
@@ -729,4 +812,8 @@ Widget buildWalletCard2(BuildContext context,TradeResult result, String listName
 */
 
 //class StockHeader
+
+void _gotoDetailsView(BuildContext context) {
+  Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailsView()));
+}
 

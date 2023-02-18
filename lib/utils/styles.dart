@@ -62,9 +62,23 @@ final kLabelLightTextStyle = TextStyle(
   fontFamily: "Montserrat",
   fontWeight: FontWeight.w500,
   letterSpacing: -0.5,
-
 );
 
+final kLabelUnoTextStyle = TextStyle(
+  color: lightColorScheme.scrim,
+  fontSize: 16.0,
+  fontFamily: "Montserrat",
+  fontWeight: FontWeight.w500,
+  letterSpacing: -0.5,
+);
+
+final kOrderTextStyle = TextStyle(
+  color: lightColorScheme.scrim,
+  fontFamily: "Montserrat",
+  fontWeight: FontWeight.w500,
+  fontSize: 16.0,
+  letterSpacing: -0.5,
+);
 final kButtonDarkTextStyle = TextStyle(
   color: Colors.white,
   fontSize: 20.0,

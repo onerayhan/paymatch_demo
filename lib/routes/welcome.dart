@@ -1,3 +1,5 @@
+import 'package:paymatch_demo/model/transaction.dart';
+import 'package:paymatch_demo/routes/expandable_wallet_card.dart';
 import 'package:paymatch_demo/routes/fundings.dart';
 import 'package:paymatch_demo/utils/color.dart';
 import 'package:paymatch_demo/utils/dimension.dart';
@@ -6,6 +8,7 @@ import 'package:paymatch_demo/utils/styles.dart';
 
 import '../model/orders.dart';
 import 'card.dart';
+import '../Views/order_card.dart';
 
 
 class PortfolioView extends StatefulWidget {
@@ -18,13 +21,14 @@ class PortfolioView extends StatefulWidget {
 class _PortfolioViewState extends State<PortfolioView> {
 
 //fake instance
-  List<TradeResult> results = [
-    TradeResult("AAPL", "Apple Inc.", RET_CODE.PLACED, 0, 150, 345.30, 345.31, 345.30),
-    TradeResult("AAPL", "Apple Inc.", RET_CODE.PLACED, 0, 150, 345.30, 345.31, 345.30),
-    TradeResult("AAPL", "Apple Inc.", RET_CODE.PLACED, 0, 150, 345.30, 345.31, 345.30),
-    TradeResult("AAPL", "Apple Inc.", RET_CODE.PLACED, 0, 150, 345.30, 345.31, 345.30),
-    TradeResult("AAPL", "Apple Inc.", RET_CODE.PLACED, 0, 150, 345.30, 345.31, 345.30),
-    TradeResult("AAPL", "Apple Inc.", RET_CODE.PLACED, 0, 150, 345.30, 345.31, 345.30),
+  List<Transaction> results = [
+    Transaction(id: 40, symbol: "AAPL", amount: 260, remaining: 140, price: 345.30, expiration: 2023,time: 1345 ,status: TransStatus.success, transType: TransType.buy, symbolName: "Apple Inc."),
+    Transaction(id: 40, symbol: "AMZN", amount: 260, remaining: 140, price: 345.30, expiration: 2023,time: 1345 ,status: TransStatus.success, transType: TransType.buy, symbolName: "Amazon Inc."),
+    Transaction(id: 40, symbol: "EXXN", amount: 260, remaining: 140, price: 345.30, expiration: 2023, time: 1345 ,status: TransStatus.success, transType: TransType.buy, symbolName: "Exxon Mobile Oil Company Inc."),
+    Transaction(id: 40, symbol: "TMNT", amount: 260, remaining: 140, price: 345.30, expiration: 2023,time: 1345 ,status: TransStatus.success, transType: TransType.buy, symbolName: "Teenage Mutant Ninja Turtles Incorporated."),
+    Transaction(id: 40, symbol: "AAPL", amount: 260, remaining: 140, price: 345.30, expiration: 2023,time: 1345 ,status: TransStatus.success, transType: TransType.buy, symbolName: "Apple Inc."),
+    Transaction(id: 40, symbol: "AAPL", amount: 260, remaining: 140, price: 345.30, expiration: 2023,time: 1345 ,status: TransStatus.success, transType: TransType.buy, symbolName: "Apple Inc."),
+
 
   ];
   List<TradeResult> results2 = [
@@ -88,8 +92,8 @@ class _PortfolioViewState extends State<PortfolioView> {
             body: TabBarView(
               children: [
                 buildWalletPage(results2, listName),
-                buildOrdersPage(results, listName),
-                buildOrdersPage(results2, listName),
+                buildOrdersPage(results),
+                buildOrdersPage(results),
                 FundingsView(),
               ],
             )),
@@ -98,7 +102,7 @@ class _PortfolioViewState extends State<PortfolioView> {
   }
 
 
-  Widget buildOrdersPage(List<TradeResult> results, String listName) => SafeArea(
+  Widget buildOrdersPage(List<Transaction> results) => SafeArea(
     top: false,
     bottom: false,
     child: Builder(
@@ -116,7 +120,7 @@ class _PortfolioViewState extends State<PortfolioView> {
                         children: [
                           GestureDetector(
                             //onTap: () => gotoTradeView(context),
-                            child: WaitingOrderCard(result: results[index], listName: listName,),
+                            child: WaitingOrderCard(result: results[index]),
                           ),
                           Divider(height: 1,
                             indent: 50.0,
@@ -179,8 +183,14 @@ class _PortfolioViewState extends State<PortfolioView> {
                       child: Column(
                         children: [
                           GestureDetector(
-                            //onTap: () => gotoTradeView(context),
-                            child: WalletCard(result: results[index], listName: listName,),
+                            onTap: () {
+
+                            },
+                            child: ExpandableWalletCard(
+                              expandedChild: WalletCard(result: results[index], listName: listName,),
+                              collapsedChild:WalletCardNonExpanded(result: results[index], listName: listName,),
+                              isExpanded: false,
+                            ),
                           ),
                           Divider(height: 1,
                             indent: 50.0,
