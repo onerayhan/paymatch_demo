@@ -15,7 +15,7 @@ class WaitingOrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    return buildWaitingOrderCard(context, result, listName , height);
+    return buildWaitingOrderCard(context, result, listName , height,);
   }
 }
 
@@ -36,31 +36,19 @@ class WalletCard extends StatelessWidget {
   }
 }
 
-class FundingsCard extends StatelessWidget {
-  Funding funding;
-
-
-  FundingsCard({Key? key,required this.funding});
-
-  @override
-  Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    return buildFundingsCard(context, funding, height);
-  }
-}
-
-Widget buildFundingsCard(BuildContext context, Funding funding, double height) => Container(
-  height: height * 0.45,
+Widget buildFundingsCard(BuildContext context, Funding funding, double height, double width) => Container(
+  height: height * 0.55,
   child:   Card(
     margin: EdgeInsets.all(8.0),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0)),
     color: lightColorScheme.onPrimary,
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 4,
+            flex: 3,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,7 +59,7 @@ Widget buildFundingsCard(BuildContext context, Funding funding, double height) =
                       borderRadius: BorderRadius.circular(15.0),
                       image: DecorationImage(
                         image: funding.bgImg,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                         opacity: 0.3,
                         isAntiAlias: true,
                       ),
@@ -81,15 +69,17 @@ Widget buildFundingsCard(BuildContext context, Funding funding, double height) =
               ],
             ),
           ),
+          SizedBox(height: 16.0,),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Row(
               children: [
                 Expanded(
-                    child: Text("A1 Capital; Hisse Senedi ve VİOP işlemlerine aracılık, Yatırım Danışmanlığı, Portföy Yönetimi, Halka Arz, Borçlanma Aracı İhraçları, Şirket Değerlemesi, Şirket Satın Alma ve Birleşme, Proje Finansmanı, Sermaye Artırımı ve Çağrı İşlemlerine aracılık gibi sermaye piyasalarının tüm alanlarını kapsayan geniş yetkili aracı kurum olarak müşterilerine özel çözümler sunuyor."))
+                    child: Text("A1 Capital; Hisse Senedi ve VİOP işlemlerine aracılık, Yatırım Danışmanlığı, Portföy Yönetimi, Halka Arz, Borçlanma Aracı İhraçları, Şirket Değerlemesi, Şirket Satın Alma ve Birleşme, Proje Finansmanı..."))
               ],
             ),
           ),
+          SizedBox(height: 16.0,),
           Expanded(
             flex: 2,
             child: Row(
@@ -106,7 +96,7 @@ Widget buildFundingsCard(BuildContext context, Funding funding, double height) =
                 ),
                 const SizedBox(width: 16.0,),
                 Expanded(
-                  flex: 6,
+                  flex: 5,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -122,13 +112,84 @@ Widget buildFundingsCard(BuildContext context, Funding funding, double height) =
               ],
             ),
           ),
+          SizedBox(height: 16.0,),
           Expanded(
             flex: 1,
             child: Row(
               children: [
-                LinearProgressIndicator(
-                  value: 0.5,
-                  semanticsLabel: "Fonlanan Miktar",
+                //USED Stack instead of linear progress indicator
+                //TODO:: solve text bug(percentage is not fully visible when less than 20%)
+                Expanded(
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        width: width,
+                        height: double.maxFinite,
+                        decoration: BoxDecoration(
+                          color: lightColorScheme.primaryContainer,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        //color: lightColorScheme.primaryContainer,
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        padding: EdgeInsets.all(4.0),
+                        height: double.maxFinite,
+                        width: width * funding.fundedPercentage,
+                        decoration: BoxDecoration(
+                          color: lightColorScheme.onPrimaryContainer,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Center(
+                          child: Text( "${(funding.fundedPercentage) * 100}%",
+                          style: kLabelLightTextStyle,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 16.0,),
+          Expanded(
+              flex: 1,
+              child: Text(" Kalan Hedef ${(funding.volumeRemaining * funding.price)}₺",
+              ),
+          ),
+          SizedBox(height: 16.0,),
+          Expanded(
+            flex: 1,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(
+                          width: 1.0,
+                          color: Colors.green),),
+                      onPressed: () {},
+                      child: Text("Yatırım Yap",
+                          style: kChangeGreenTextStyle,
+                      ),
+                  ),
+                ),
+                SizedBox(width: 16.0,),
+                Expanded(
+                  flex: 1,
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                        width: 1.0,
+                        color: lightColorScheme.onPrimaryContainer),),
+                    onPressed: () {},
+                    child: Text("İncele",
+                      style: kButtonTextStyle,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -138,6 +199,20 @@ Widget buildFundingsCard(BuildContext context, Funding funding, double height) =
     ),
   ),
 );
+
+class FundingsCard extends StatelessWidget {
+  Funding funding;
+
+
+  FundingsCard({Key? key,required this.funding});
+
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return buildFundingsCard(context, funding, height, width);
+  }
+}
 
 
 
