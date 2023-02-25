@@ -120,7 +120,12 @@ class _PortfolioViewState extends State<PortfolioView> {
                         children: [
                           GestureDetector(
                             //onTap: () => gotoTradeView(context),
-                            child: WaitingOrderCard(result: results[index]),
+                            child: ExpandableWaitingOrderCard(
+                              collapsedChild: WaitingOrderCardCollapsed(result: results[index],
+                              ),
+                              expandedChild: WaitingOrderCard(result: results[index],
+                              ),
+                            ),
                           ),
                           Divider(height: 1,
                             indent: 50.0,
