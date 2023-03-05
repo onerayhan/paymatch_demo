@@ -100,113 +100,111 @@ class WaitingOrderCard extends StatelessWidget {
   }
   Widget buildWaitingOrderCard(BuildContext context,Transaction result, double height) => Container(
     height: height * 0.45,
-
-      margin: EdgeInsets.all(0.0),
-      //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0)),
-      color: lightColorScheme.onSecondary,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("Toplam Tutar",
-                    style: kSymbolNameTextStyle,
-                  ),
-                  const SizedBox(width: 8.0,),
-                  Text("${(result.price * result.price)} ₺",
-                    style: kPriceTextStyle,
-                  ),
-                ],
-              ),
+    margin: EdgeInsets.all(0.0),
+    //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0)),
+    color: lightColorScheme.onSecondary,
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Toplam Tutar",
+                  style: kSymbolNameTextStyle,
+                ),
+                const SizedBox(width: 8.0,),
+                Text("${(result.price * result.price)} ₺",
+                  style: kPriceTextStyle,
+                ),
+              ],
             ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("Pay Miktarım",
-                    style: kSymbolNameTextStyle,
-                  ),
-                  const SizedBox(width: 8.0,),
-                  Text("${(result.price)} Adet",
-                    style: kPriceTextStyle,
-                  ),
-                ],
-              ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Pay Miktarım",
+                  style: kSymbolNameTextStyle,
+                ),
+                const SizedBox(width: 8.0,),
+                Text("${(result.price)} Adet",
+                  style: kPriceTextStyle,
+                ),
+              ],
             ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("Son Fiyat",
-                    style: kSymbolNameTextStyle,
-                  ),
-                  const SizedBox(width: 8.0,),
-                  Text("${(result.price)} ₺",
-                    style: kPriceTextStyle,
-                  ),
-                ],
-              ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Son Fiyat",
+                  style: kSymbolNameTextStyle,
+                ),
+                const SizedBox(width: 8.0,),
+                Text("${(result.price)} ₺",
+                  style: kPriceTextStyle,
+                ),
+              ],
             ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("Maliyet",
-                    style: kSymbolNameTextStyle,
-                  ),
-                  const SizedBox(width: 8.0,),
-                  Text("${(result.price)} ₺",
-                    style: kPriceTextStyle,
-                  ),
-                ],
-              ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Maliyet",
+                  style: kSymbolNameTextStyle,
+                ),
+                const SizedBox(width: 8.0,),
+                Text("${(result.price)} ₺",
+                  style: kPriceTextStyle,
+                ),
+              ],
             ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("Kar/Zarar",
-                    style: kSymbolNameTextStyle,
-                  ),
-                  const SizedBox(width: 8.0,),
-                  Text("${((result.price) - (result.price))} ₺",
-                    style: kPriceTextStyle,),
-                ],
-              ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Kar/Zarar",
+                  style: kSymbolNameTextStyle,
+                ),
+                const SizedBox(width: 8.0,),
+                Text("${((result.price) - (result.price))} ₺",
+                  style: kPriceTextStyle,),
+              ],
             ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("Getiri",
-                    style: kSymbolNameTextStyle,
-                  ),
-                  const SizedBox(width: 8.0,),
-                  Text("${((result.price)) / ((result.price)) * 100}",
-                    style: kPriceTextStyle,
-                  ),
-                ],
-              ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Getiri",
+                  style: kSymbolNameTextStyle,
+                ),
+                const SizedBox(width: 8.0,),
+                Text("${((result.price)) / ((result.price)) * 100}",
+                  style: kPriceTextStyle,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-
+    ),
   );
 
   Widget _showType(BuildContext ctx,TransType type){
@@ -360,5 +358,107 @@ class WaitingOrderCardCollapsed extends StatelessWidget {
       ),
     ),
   );
+}
 
+class SimpleWaitingOrderCard extends StatelessWidget {
+  Transaction result;
+  SimpleWaitingOrderCard({Key? key, required this.result}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return buildSimpleWaitingOrderCard(context, result,  height, width);
+  }
+  Widget buildSimpleWaitingOrderCard(BuildContext context, Transaction result, double height, double width) => Container(
+    height: height * 0.10,
+    width: width,
+    color: lightColorScheme.onSecondary,
+    padding: EdgeInsets.fromLTRB(width * 0.03, height * 0.02, width * 0.03, height * 0.02),
+    child: Row(
+      children: <Widget>[
+        Expanded(
+          child: Text("${result.symbol}",
+            textAlign: TextAlign.center,
+            style: kSymbolTextStyle,
+          ),
+        ),
+        Expanded(
+          child: (result.symbolName).length > 15
+          ? Text("AL",
+            textAlign: TextAlign.center,
+            style: kChangeGreenTextStyle,)
+          : Text(
+            ("SAT"),
+            textAlign: TextAlign.center,
+            style: kChangeRedTextStyle,),
+        ),
+        Expanded(
+          child: Text("${result.remaining}",
+            textAlign: TextAlign.center,
+            style: kSymbolNameTextStyle,
+          ),
+        ),
+        VerticalDivider(width: width * 0.003, thickness: width * 0.003, indent: (height * 0.02), endIndent: (height * 0.02), color: lightColorScheme.inversePrimary,),
+        Expanded(
+          child: Text("${result.amount}",
+            textAlign: TextAlign.center,
+            style: kSymbolNameTextStyle,
+          ),
+        ),
+        VerticalDivider(width: width * 0.003, thickness: width * 0.003, indent: (height * 0.02), endIndent: (height * 0.02), color: lightColorScheme.inversePrimary,),
+        Expanded(
+          child: Text("${result.price}",
+            textAlign: TextAlign.center,
+            style: kSymbolNameTextStyle,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+class WaitingOrdersHeader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return Container(
+      color: lightColorScheme.primaryContainer,
+      padding: EdgeInsets.fromLTRB(width * 0.03, height * 0.02, width * 0.03, height * 0.02),
+      child: Row(
+        //backgroundColor: lightColorScheme.primaryContainer,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(flex: 1,
+            child: Text("Sembol",
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Expanded(flex: 1,
+            child: Text("Emir",
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Expanded(flex: 1,
+            child: Text("Kalan Pay",
+              textAlign: TextAlign.center,
+            ),
+          ),
+          //VerticalDivider(width: width * 0.1, thickness: width * 0.1,  color: Colors.black,),
+          Expanded( flex: 1,
+            child: Text("Miktar",
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Expanded(flex: 1,
+            child: Text("Fiyat",
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

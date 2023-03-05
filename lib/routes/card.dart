@@ -23,61 +23,67 @@ class WaitingOrderCard extends StatelessWidget {
 class WalletCardNonExpanded extends StatelessWidget {
   TradeResult result;
   String listName;
-
   WalletCardNonExpanded({Key? key,required this.result, required this.listName}) : super(key: key);
   //String listName;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    return Card(
-      margin: EdgeInsets.all(0.0),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0)),
-      color: lightColorScheme.onPrimary,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(6.0),
-              decoration: BoxDecoration(
-                color: lightColorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(8),
-                //border: Border.all(width: 8),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: ClipOval(
-                      child: Image.network("https://play-lh.googleusercontent.com/8MCdyr0eVIcg8YVZsrVS_62JvDihfCB9qERUmr-G_GleJI-Fib6pLoFCuYsGNBtAk3c",
-                        width: 40.0,
-                        height: 60.0,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 8.0,),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(result.symbol,
-                            style: kSymbolNameTextStyle),
-                        const SizedBox(height: 8.0,),
-                        Text((result.fullName).length < 20 ? result.fullName : "${result.fullName.substring(0,20)}...",
-                          style: kSymbolTextStyle,),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+    return Container(
+        height: height * 0.10,
+        color: lightColorScheme.onPrimary,
+        padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+          Container(
+            padding: EdgeInsets.all(6.0),
+            decoration: BoxDecoration(
+              color: lightColorScheme.primaryContainer,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0),
+                  bottomLeft: Radius.circular(8.0),
+                  bottomRight: Radius.circular(8.0)),
+              //border: Border.all(width: 8),
             ),
-          ],
-        ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: ClipOval(
+                    child: Image.network("https://play-lh.googleusercontent.com/8MCdyr0eVIcg8YVZsrVS_62JvDihfCB9qERUmr-G_GleJI-Fib6pLoFCuYsGNBtAk3c",
+                      width: 40.0,
+                      height: 60.0,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8.0,),
+                Expanded(
+                  flex: 3,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(result.symbol,
+                          style: kSymbolNameTextStyle),
+                      const SizedBox(height: 8.0,),
+                      Text((result.fullName).length < 20 ? result.fullName : "${result.fullName.substring(0,20)}...",
+                        style: kSymbolTextStyle,),
+                    ],
+                  ),
+                ),
+                Expanded(flex: 1,
+                  child: IconButton(
+                    icon: Icon(Icons.info_outline_rounded),
+                    onPressed: () {},
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -487,59 +493,14 @@ Widget buildWalletCard(BuildContext context,TradeResult result, String listName)
 Widget buildWalletCard2(BuildContext context,TradeResult result, String listName, height) => Container(
   height: height * 0.45,
   width: double.infinity,
-  child:   Card(
-    margin: EdgeInsets.all(0.0),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0.0)),
-    color: lightColorScheme.onPrimary,
+  color:lightColorScheme.onPrimary,
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Column(
         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           //StockHeader
-          Container(
-            //width: ,
-            padding: EdgeInsets.all(6.0),
-            decoration: BoxDecoration(
-              color: lightColorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(8),
-              //border: Border.all(width: 8),
-            ),
-            child: Expanded(
-              flex: 2,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: ClipOval(
-                      child: Image.network("https://play-lh.googleusercontent.com/8MCdyr0eVIcg8YVZsrVS_62JvDihfCB9qERUmr-G_GleJI-Fib6pLoFCuYsGNBtAk3c",
-                        width: 40.0,
-                        height: 60.0,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 8.0,),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(result.symbol,
-                            style: kSymbolNameTextStyle),
-                        const SizedBox(height: 8.0,),
-                        Text((result.fullName).length < 20 ? result.fullName : "${result.fullName.substring(0,20)}...",
-                          style: kSymbolTextStyle,),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
           //const SizedBox(width: 16.0,),
           Expanded(
             flex: 1,
@@ -639,7 +600,6 @@ Widget buildWalletCard2(BuildContext context,TradeResult result, String listName
         ],
       ),
     ),
-  ),
 );
 
 
